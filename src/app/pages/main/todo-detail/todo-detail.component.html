@@ -1,0 +1,56 @@
+<div class="todo-details-container">
+  @if (data$ | async; as data) {
+  <app-todo-detail-header
+    [todo]="data.todo"
+    [isEditMode]="data.isEditMode"
+    (saveTodo)="onSaveTodo(data.todo)"
+  ></app-todo-detail-header>
+
+  @if(data.isEditMode) {
+  <section class="todo-section-spacing">
+    <form #editFormTodo="ngForm" class="todo-section">
+      <mat-form-field class="title-wrapper">
+        <mat-label>To Do text</mat-label>
+        <textarea
+          matInput
+          required
+          maxlength="250"
+          name="title"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="2"
+          [ngModel]="data.todo!.title"
+        ></textarea>
+        @if (title?.hasError('required')){
+        <mat-error class="input-error"> To Do text is required </mat-error>
+        } @if (title?.hasError('maxlength')){
+        <mat-error class="input-error">
+          To Do text can have up to 250 characters
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <div class="todo-complete">
+        <h3>Completed</h3>
+        <mat-slide-toggle name="completed" [ngModel]="data.todo!.completed"
+          >Is Task Complete</mat-slide-toggle
+        >
+      </div>
+    </form>
+  </section>
+  } @else {
+  <section class="todo-section todo-section-spacing">
+    <div class="title-box title-wrapper">
+      <p>{{ data.todo?.title }}</p>
+    </div>
+
+    <div class="todo-complete">
+      <h3>Completed</h3>
+      <p>{{ data.todo?.completed ? "Yes" : "No" }}</p>
+    </div>
+  </section>
+  }
+
+  <app-todo-comments [todo]="data.todo"></app-todo-comments>
+  }
+</div>

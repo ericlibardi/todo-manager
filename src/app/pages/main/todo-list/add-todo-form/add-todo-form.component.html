@@ -1,0 +1,37 @@
+<div id="form-container">
+  <form
+    #addTodoForm="ngForm"
+    (ngSubmit)="onSubmit(addTodoForm)"
+    class="form-wrapper"
+  >
+    <div class="input-wrapper">
+      <input
+        type="text"
+        placeholder="Add Todo..."
+        required
+        maxlength="250"
+        name="title"
+        ngModel
+      />
+      <button
+        mat-button
+        type="button"
+        matSuffix
+        aria-label="Clear"
+        (click)="resetForm($event)"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <button mat-flat-button type="submit" color="accent" class="submit-btn">
+      Add
+    </button>
+  </form>
+
+  @if(message) {
+  <div class="error-message">
+    <p class="error-text">{{ message }}</p>
+  </div>
+  }
+</div>

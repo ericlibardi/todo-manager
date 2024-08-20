@@ -1,0 +1,32 @@
+:host {
+  flex-grow: 2;
+  overflow: hidden;
+}
+
+#todo-list-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  height: 100%;
+
+  .todo-list {
+    overflow-x: auto;
+    .todo-item {
+      height: 80px;
+      position: relative;
+
+      &:not(&:last-of-type) {
+        &::after {
+          content: "";
+          position: absolute;
+          height: 1.5px;
+          width: 94%;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: rgba(98, 98, 98, 0.582);
+        }
+      }
+    }
+  }
+}

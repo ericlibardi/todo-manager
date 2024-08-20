@@ -1,0 +1,19 @@
+<div class="todo-item-wrapper">
+  <mat-checkbox
+    [disableRipple]="true"
+    [checked]="todo.completed"
+    (click)="$event.stopPropagation()"
+    (change)="onCheckBoxChange($event)"
+  ></mat-checkbox>
+
+  <p [class.completed]="todo.completed">{{ todo.title }}</p>
+
+  <div class="button-wrapper">
+    <button mat-mini-fab color="primary" (click)="onEdit($event)">
+      <mat-icon aria-hidden="false" aria-label="edit todo">edit</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" (click)="onDelete($event)">
+      <mat-icon aria-hidden="false" aria-label="delete todo">delete</mat-icon>
+    </button>
+  </div>
+</div>

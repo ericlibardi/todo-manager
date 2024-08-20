@@ -1,0 +1,12 @@
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px;
+  
+    .action-btns {
+      display: flex;
+      column-gap: 18px;
+    }
+  }
+  

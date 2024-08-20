@@ -1,0 +1,19 @@
+<div id="todo-list-container">
+  <app-add-todo-form></app-add-todo-form>
+
+  @if(todoList$ | async; as todoList) {
+  <mat-nav-list class="todo-list" role="list" #shoes>
+    @for (todo of todoList; track todo.id) {
+    <mat-list-item
+      class="todo-item"
+      role="listitem"
+      [disableRipple]="true"
+      (click)="onItemClick(todo.id)"
+    >
+      <app-todo-item [todo]="todo"></app-todo-item>
+    </mat-list-item>
+    }
+  </mat-nav-list>
+
+  }
+</div>

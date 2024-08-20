@@ -1,0 +1,48 @@
+<div class="comment-container">
+  <h3>Comments</h3>
+
+  <mat-list role="list">
+    @for (comment of todo?.comments; track comment.id ) {
+    <mat-list-item role="listitem">
+      <div class="comment-detail">
+        <p>
+          {{ comment.title }}
+        </p>
+        <mat-icon
+          (click)="onDeleteComment(comment)"
+          aria-hidden="false"
+          aria-label="delete comment"
+          class="commend-delete"
+          >cancel</mat-icon
+        >
+      </div>
+    </mat-list-item>
+    }
+  </mat-list>
+
+  <form
+    #addFormComment="ngForm"
+    class="comment-form"
+    (ngSubmit)="onSubmit(addFormComment)"
+  >
+    <mat-form-field class="form-group">
+      <mat-label>Comment</mat-label>
+      <input
+        matInput
+        type="text"
+        name="title"
+        placeholder="Add comment..."
+        ngModel
+        required
+        maxlength="250"
+      />
+      @if (addFormComment.controls['title']?.invalid &&
+      (addFormComment.controls['title']?.touched ||
+      addFormComment.controls['title']?.dirty)){
+      <mat-error class="input-error"> Comment is required </mat-error>
+      }
+    </mat-form-field>
+
+    <button mat-flat-button type="submit" color="primary">Add</button>
+  </form>
+</div>

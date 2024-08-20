@@ -1,0 +1,37 @@
+<h2 mat-dialog-title class="modal-title">Expired session</h2>
+
+<form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+  <mat-dialog-content>
+    <p>
+      In order to continue with your tasks, you must fill your password again.
+    </p>
+
+    <mat-form-field class="form-wrapper">
+      <mat-label>password</mat-label>
+      <input type="password" name="password" matInput ngModel required />
+      @if (loginForm.controls['password']?.invalid &&
+      (loginForm.controls['password']?.touched ||
+      loginForm.controls['password']?.dirty) ){
+      <mat-error class="input-error"> Password is required</mat-error>
+      }
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions class="modal-actions-section">
+    <button
+      mat-stroked-button
+      type="button"
+      color="primary"
+      (click)="onLogout()"
+    >
+      Logout
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="!loginForm.valid"
+      color="primary"
+      type="submit"
+    >
+      Login
+    </button>
+  </mat-dialog-actions>
+</form>

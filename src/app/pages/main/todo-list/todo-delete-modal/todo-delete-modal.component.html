@@ -1,0 +1,13 @@
+<h2 mat-dialog-title class="modal-title">To Do Deletion</h2>
+<mat-dialog-content>
+  <p>
+    Are you sure you want to delete your To Do?
+    <br />
+    <br />
+    After your confirmation, it will be permanently deleted.
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions class="modal-actions-section">
+  <button mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="onConfirm()" cdkFocusInitial>Confirm</button>
+</mat-dialog-actions>

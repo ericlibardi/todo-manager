@@ -1,0 +1,39 @@
+<header>
+  <nav>
+    <mat-toolbar id="toolbar" color="primary">
+      <h4>My TODO List</h4>
+
+      <ul>
+        <li routerLink="/main" *ngIf="authenticated$ | async">Home</li>
+        <li routerLink="/about">About</li>
+      </ul>
+
+      <button mat-mini-fab [matMenuTriggerFor]="menu">
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          *ngIf="notAuthenticated$ | async"
+          mat-menu-item
+          (click)="onMenuClick(MenuOptionEnum.LOGIN)"
+        >
+          {{ MenuOptionEnum.LOGIN }}
+        </button>
+        <button
+          *ngIf="notAuthenticated$ | async"
+          mat-menu-item
+          (click)="onMenuClick(MenuOptionEnum.SIGNUP)"
+        >
+          {{ MenuOptionEnum.SIGNUP }}
+        </button>
+        <button
+          *ngIf="authenticated$ | async"
+          mat-menu-item
+          (click)="onMenuClick(MenuOptionEnum.LOGOUT)"
+        >
+          {{ MenuOptionEnum.LOGOUT }}
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+  </nav>
+</header>

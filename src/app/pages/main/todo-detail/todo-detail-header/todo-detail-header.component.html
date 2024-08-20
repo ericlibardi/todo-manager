@@ -1,0 +1,22 @@
+<section class="details-header">
+  <button mat-mini-fab color="primary" (click)="navigateBack()">
+    <mat-icon aria-hidden="false" aria-label="back">arrow_back</mat-icon>
+  </button>
+
+  <div class="action-btns">
+    @if(isEditMode) {
+    <button mat-stroked-button color="primary" (click)="closeEditMode()">
+      cancel
+    </button>
+    <button mat-flat-button color="primary" (click)="updateTodo()">save</button>
+    } @else {
+    <button mat-stroked-button color="primary" (click)="openEditMode()">
+      edit
+    </button>
+    <button mat-stroked-button color="accent" (click)="deleteTodo()">
+      delete
+    </button>
+
+    }
+  </div>
+</section>

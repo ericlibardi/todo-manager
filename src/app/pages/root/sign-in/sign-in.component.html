@@ -1,0 +1,65 @@
+<div class="login-container">
+  <div class="form-container">
+    <h3>Sign Up</h3>
+
+    <form [formGroup]="formSignIn" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>email</mat-label>
+        <input
+          matInput
+          autocomplete="on"
+          type="email"
+          name="email"
+          placeholder="example@example.com"
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+        />
+        @if (email?.errors?.['required']){
+        <mat-error class="input-error"> Email is required </mat-error>
+        } @if (email?.errors?.['email']) {
+        <mat-error class="input-error"> Invalid email </mat-error> }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>password</mat-label>
+        <input
+          type="password"
+          name="password"
+          matInput
+          formControlName="password"
+          [errorStateMatcher]="matcher"
+        />
+        @if (password?.errors?.['required']){
+        <mat-error class="input-error"> Password is required</mat-error>
+        } @if (password?.errors?.['pattern']){
+        <mat-error class="input-error">
+          Invalid password: 1 uppercase, 1 lowercase, 1 digit, 1 special
+          character</mat-error
+        >
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>confirm password</mat-label>
+        <input
+          type="password"
+          name="confirmPassword"
+          matInput
+          formControlName="confirmPassword"
+          [errorStateMatcher]="matcher"
+        />
+        @if (confirmPassword?.errors?.['required']){
+        <mat-error class="input-error"> Confirm your password</mat-error>
+        } @if (confirmPassword?.errors?.['confirmedValidator']){
+        <mat-error class="input-error"> Passwords don't match</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" color="primary">Sign In</button>
+    </form>
+
+    <p class="register-text">
+      Already registered? <a routerLink="/login">Login</a> to TODO List
+    </p>
+  </div>
+</div>

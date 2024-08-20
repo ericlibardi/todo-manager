@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="form-container">
+    <h3>Login</h3>
+
+    <form [formGroup]="formLogin" class="example-form" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>email</mat-label>
+        <input
+          matInput
+          autocomplete="on"
+          type="email"
+          name="email"
+          placeholder="example@example.com"
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+        />
+        @if (email?.errors?.['required']){
+        <mat-error class="input-error"> Email is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>password</mat-label>
+        <input
+          type="password"
+          name="password"
+          matInput
+          formControlName="password"
+          [errorStateMatcher]="matcher"
+        />
+        @if (password?.errors?.['required']){
+        <mat-error class="input-error"> Password is required</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" color="primary">Login</button>
+    </form>
+
+    <p class="register-text">
+      Not registered? <a routerLink="/signup">Sign Up</a> to TODO List
+    </p>
+  </div>
+</div>
